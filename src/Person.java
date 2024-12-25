@@ -1,10 +1,20 @@
 public abstract class Person {
     private String name;
     private final int id;
+    private static int patientCount = 0;
+    private static int doctorCount = 0;
+    private static int supervisorCount = 0;
 
     public Person(String name, int id) {
         this.name = name;
         this.id = id;
+        if (this instanceof Patient) {
+            patientCount++;
+        } else if (this instanceof Doctor) {
+            doctorCount++;
+        } else if (this instanceof Supervisor) {
+            supervisorCount++;
+        }
     }
 
     public String getName() {
@@ -30,5 +40,16 @@ public abstract class Person {
 
     public abstract void showDetails();
 
+    public static int getPatientCount() {
+        return patientCount;
+    }
+
+    public static int getDoctorCount() {
+        return doctorCount;
+    }
+
+    public static int getSupervisorCount() {
+        return supervisorCount;
+    }
 
 }
